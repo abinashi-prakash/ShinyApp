@@ -9,20 +9,20 @@ runtime: shiny
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-##Project Overview:
+## Project Overview:
 This peer assessed assignment has two parts,
 
 1) need to create a Shiny application and deploy it on Rstudio's servers.
 
 2) use Slidify or Rstudio Presenter to prepare a reproducible pitch presentation about the application.
 
-##Steps to Perform:
+## Steps to Perform:
 1. Write a shiny application with associated supporting documentation. The documentation should be thought of as whatever a user will need to get started using your application.
 2. Deploy the application on Rstudio's shiny server.
 3. Share the application link by pasting it into the provided text box.
 4. Share server.R and ui.R code on github.
 
-##Application Overview:
+## Application Overview:
 Extracted the "tendulkar.csv" data file from package "cricketr" which is being developed by "Tinniam V Ganesh".Source for this dataset is "http://www.espncricinfo.com/ci/content/stats/index.html".
 I have placed,
 
@@ -32,7 +32,7 @@ b) The application is running on (https://abinashiprakash.shinyapps.io/ShinyApp/
 
 c) ui.R, and Server.R Code in my github repository (https://github.com/abinashi-prakash/ShinyApp).     
 
-##Sachin's Score Snapshot: 
+## Sachin's Score Snapshot: 
 ```{r Data_Table,message=FALSE,echo=FALSE,warning=FALSE}
 library(dplyr)
 library(ggplot2)
