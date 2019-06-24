@@ -1,0 +1,46 @@
+---
+title: "Sachin_Performance"
+author: "Abinashi Prakash"
+date: "24 June 2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Project Overview:
+This peer assessed assignment has two parts,
+
+1) need to create a Shiny application which will reflect Sachin's Score against each test playing country and deploy it on Rstudio's servers.
+
+2) use Slidify or Rstudio Presenter to prepare a reproducible pitch presentation about the application.
+
+## Steps to Perform:
+1. Create a shiny application with associated supporting documentation. The documentation should be thought of as whatever a user will need to get started using your application.
+2. Deploy the application on Rstudio's shiny server.
+3. Share the application link by pasting it into the provided text box.
+4. Share server.R and ui.R code on github.
+
+## Application Overview:
+Sachin Tendulkar is one of the best player in the history of Cricket.This Application will provide the snapshot of Sachin Tendulkar's score against each test playing country. 
+Extracted the "tendulkar.csv" data file from package "cricketr" which is being developed by "Tinniam V Ganesh".Source for this dataset is "http://www.espncricinfo.com/ci/content/stats/index.html".
+I have placed,
+
+a) Data file at ("https://raw.githubusercontent.com/abinashi-prakash/ShinyApp/master/tendulkar.csv").
+b) The application is running on (https://abinashiprakash.shinyapps.io/Sachin_Score_App/).
+c) ui.R, and Server.R Code in my github repository (https://github.com/abinashi-prakash/ShinyApp).     
+
+## Sachin's Score Snapshot: 
+```{r Data_Table,message=FALSE,echo=FALSE,warning=FALSE}
+library(dplyr)
+library(ggplot2)
+Sachin_Data <- read.csv("https://raw.githubusercontent.com/abinashi-prakash/ShinyApp/master/tendulkar.csv",header = TRUE)
+##Prepare Data and Calculate the SUM of Runs for each opposton.
+Sachin_Runs <- data.frame(format(as.POSIXct(Sachin_Data$Start_Date,format="%d-%m-%Y"),"%Y"),substr(Sachin_Data$Opposition,3,15),as.character(Sachin_Data$Dismissal),Sachin_Data$Runs)
+names(Sachin_Runs) <- c("Year", "Opposition", "Dismissal","Runs")
+Sachin_Runs <- Sachin_Runs[!(Sachin_Runs$Runs == "" | is.na(Sachin_Runs$Runs) |Sachin_Runs$Runs == "DNB" | Sachin_Runs$Runs == "TDNB"), ]
+##Get Run scored against each test playing country
+Sachin_Runs <- Sachin_Runs %>% group_by(Opposition) %>% summarise("Runs" = sum(as.numeric(as.character(Runs))))
+Sachin_Runs
+```
